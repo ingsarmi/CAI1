@@ -145,61 +145,41 @@ body {
     outline-offset: 2px;
 }
 
-/* =========================================
-   SECCIÓN DE PARTÍCULAS (Reemplaza la anterior)
-   ========================================= */
-
-.particles-layer {
+/* Contenedor que ocupa toda la pantalla detrás del contenido */
+#particles-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 1; 
-    pointer-events: none;
+    z-index: 1; /* Detrás del texto, encima del fondo */
+    pointer-events: none; /* Crucial para poder dar clic a los botones */
 }
 
-.particles-layer::before,
-.particles-layer::after {
-    content: '';
+/* El estilo de cada puntito */
+.particle {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px; /* Un poco más grandes para verlas mejor */
-    height: 4px;
+    bottom: -20px; /* Margen extra para partículas grandes */
+    background-color: #ffb142; /* Un naranja un poco más brillante */
     border-radius: 50%;
-    opacity: 0.8;
-    will-change: transform; /* OPTIMIZACIÓN IMPORTANTE */
-    
-    /* Coordenadas */
-    box-shadow: 
-        10vw 20vh #f39c12, 35vw 45vh #f39c12, 80vw 10vh #f39c12, 60vw 85vh #f39c12,
-        95vw 30vh #f39c12, 25vw 90vh #f39c12, 50vw 50vh #f39c12, 15vw 65vh #f39c12,
-        70vw 25vh #f39c12, 40vw 15vh #f39c12, 85vw 70vh #f39c12, 5vw 95vh #f39c12,
-        30vw 35vh #f39c12, 55vw 80vh #f39c12, 90vw 60vh #f39c12, 20vw 5vh #f39c12,
-        65vw 40vh #f39c12, 45vw 75vh #f39c12, 75vw 95vh #f39c12, 12vw 55vh #f39c12,
-        92vw 15vh #f39c12, 38vw 60vh #f39c12, 58vw 20vh #f39c12, 82vw 45vh #f39c12,
-        18vw 85vh #f39c12, 68vw 10vh #f39c12, 28vw 25vh #f39c12, 48vw 90vh #f39c12,
-        88vw 30vh #f39c12, 05vw 45vh #f39c12, 98vw 75vh #f39c12, 52vw 05vh #f39c12,
-        22vw 70vh #f39c12, 72vw 55vh #f39c12, 32vw 05vh #f1c40f, 91vw 91vh #f1c40f;
-
-    /* He bajado el tiempo a 40s para que sea más visible el movimiento */
-    animation: moveParticlesUp 40s linear infinite;
+    box-shadow: 0 0 15px rgba(255, 177, 66, 0.9); 
+    filter: blur(1px); 
+    animation-name: floatUp;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
-/* La segunda capa para el bucle infinito */
-.particles-layer::after {
-    top: 100%;
-}
-
-/* ESTO DEBE IR AL FINAL DEL ARCHIVO, SIN LLAVES RODEÁNDOLO */
-@keyframes moveParticlesUp {
+/* La regla de movimiento */
+@keyframes floatUp {
     0% {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
     }
     100% {
-        transform: translateY(-100%);
+        /* Suben hasta arriba (110% de la altura) y se desvanecen */
+        transform: translateY(-110vh) scale(0.5); 
+        opacity: 0;
     }
 }
 

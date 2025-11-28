@@ -11,7 +11,7 @@
 <body>
 
     <main class="hero-container">
-        <div class="particles-layer" aria-hidden="true"></div>
+    <div id="particles-container"></div>
         <h1 class="main-title">CAI - Lengua Extranjera</h1>
         
         <div class="interface-grid">
@@ -57,6 +57,44 @@
 
         </div>
     </main>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById('particles-container');
+        const particleCount = 40; // Bajamos un poco la cantidad para no saturar ya que son grandes
 
+        for (let i = 0; i < particleCount; i++) {
+            createParticle(container);
+        }
+
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+
+            // 1. Posición horizontal aleatoria
+            const leftPos = Math.random() * 100;
+            particle.style.left = `${leftPos}%`;
+
+            // 2. TAMAÑO AUMENTADO: Ahora serán de entre 5px y 14px
+            // (Antes eran de 2px a 6px)
+            const size = Math.random() * 9 + 5; 
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            // 3. Duración (Un poco más lentas para que se aprecien mejor)
+            const duration = Math.random() * 15 + 20; 
+            particle.style.animationDuration = `${duration}s`;
+
+            // 4. Retraso negativo
+            const delay = Math.random() * 25;
+            particle.style.animationDelay = `-${delay}s`;
+
+            // 5. OPACIDAD AUMENTADA: Ahora serán más sólidas (entre 0.5 y 1.0)
+            particle.style.opacity = Math.random() * 0.5 + 0.5;
+
+            container.appendChild(particle);
+        }
+    });
+</script>
+</body>
 </body>
 </html>
