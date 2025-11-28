@@ -52,25 +52,59 @@ body {
     position: relative;
     z-index: 10; 
 }
-
-.main-title {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2.5rem;
-    position: relative;
-    z-index: 10;
+.top-left-branding {
+    position: absolute; /* Lo sacamos del flujo normal */
+    top: 60px;  /* Distancia desde arriba */
+    left: 80px; /* Distancia desde la izquierda */
+    z-index: 20; /* Por encima de todo */
+    text-align: left; /* Alineación a la izquierda IMPORTANTE */
+    max-width: 400px; /* Asegura que no se estire demasiado */
 }
-/* 1. LA CAJA BLANCA (El contenedor) */
-.caja-blanca {
-    background-color: #ffffff;
-    display: inline-block; /* Se ajusta al tamaño del contenido */
-    padding: 10px 30px; /* Espacio alrededor del texto */
-    border-radius: 15px; /* Bordes redondeados */
+
+/* Reseteo del h1 interno */
+.top-left-branding h1 {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Apila los textos verticalmente */
+    align-items: flex-start; /* Alinea los hijos a la izquierda */
+}
+
+/* 2. El estilo para "CAI" (La Marca Potente) */
+.brand-cai {
+    font-family: 'Nunito', sans-serif;
+    font-size: 8.5rem; /* Tamaño masivo */
+    font-weight: 900;  /* Ultra grueso */
+    line-height: 0.85; /* Muy compacto */
     
-    /* Sombra para que destaque sobre tu fondo de color */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+    /* TRUCO PRO: Texto con degradado naranja/dorado */
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Color de respaldo por si falla el degradado */
+    color: #f39c12;
+    
+    /* Sombra fuerte ("Drop Shadow") para despegarlo del fondo */
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+}
+
+/* 3. El estilo para "Lengua Extranjera" (El descriptor) */
+.brand-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem; /* Tamaño legible */
+    font-weight: 700;  /* Negrita para que no se pierda */
+    color: #ffffff;    /* Blanco puro */
+    text-transform: uppercase; /* Mayúsculas institucionales */
+    letter-spacing: 2px; /*Un poco de aire entre letras */
+    margin-top: 5px;
+    
+    /* Sombra de texto para garantizar lectura sobre el fondo claro/oscuro */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+    
+    /* Una pequeña línea naranja debajo para decorar */
+    border-bottom: 3px solid #e67e22;
+    padding-bottom: 5px;
+    display: inline-block; /* Necesario para que el borde se ajuste al texto */
 }
 
 /* 2. EL TEXTO CON GRADIENTE (Lo que va adentro) */
@@ -272,5 +306,21 @@ body {
     .subtitle-text {
         font-size: 1rem;
         letter-spacing: 3px;
+    }
+    .top-left-branding {
+        position: relative; /* Vuelve al flujo normal */
+        top: auto; left: auto;
+        text-align: center; /* Centrado en móvil */
+        margin: 20px auto; /* Margen para separar */
+        align-items: center;
+    }
+     .top-left-branding h1 {
+         align-items: center;
+     }
+    .brand-cai {
+        font-size: 5rem; /* Reducimos tamaño */
+    }
+    .brand-subtitle {
+        font-size: 2rem;
     }
 }
